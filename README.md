@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Samachaar app is a news feed app which will fetch news information from [newsapi.org](https://newsapi.org/)
 
 ## Available Scripts
 
