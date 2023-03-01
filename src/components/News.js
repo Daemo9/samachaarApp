@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 export class News extends Component {
   static defaultPops ={
     country:'in',
-    pageSize:5,
+    pageSize:6,
     category: 'general',
   }
 
@@ -27,7 +27,7 @@ export class News extends Component {
 
   async componentDidMount() {
     let url =
-      `https://newsapi.org/v2/top-headlines?apiKey=${this.props.apiKey}&category=${this.props.category}&country=${this.props.country}&page=1&pageSize=${this.props.pageSize}`;
+      `https://newsapi.org/v2/top-headlines?apiKey=2f2e058ecaa64fdd81c83247ff369134&category=${this.props.category}&country=${this.props.country}&page=1&pageSize=${this.props.pageSize}`;
       this.setState({loading: true});
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -36,7 +36,7 @@ export class News extends Component {
   }
   handlePreviousClick = async ()=>{
     let url =
-      `https://newsapi.org/v2/top-headlines?apiKey=${this.props.apiKey}&category=${this.props.category}&country=${this.props.country}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+      `https://newsapi.org/v2/top-headlines?apiKey=2f2e058ecaa64fdd81c83247ff369134&category=${this.props.category}&country=${this.props.country}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
       this.setState({loading: true});
       let data = await fetch(url);
     let parsedData = await data.json();
@@ -50,7 +50,7 @@ export class News extends Component {
   }
   handleNextClick = async ()=>{    
     let url =
-      `https://newsapi.org/v2/top-headlines?apiKey=${this.props.apiKey}&category=${this.props.category}&country=${this.props.country}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+      `https://newsapi.org/v2/top-headlines?apiKey=2f2e058ecaa64fdd81c83247ff369134&category=${this.props.category}&country=${this.props.country}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
     this.setState({loading: true});
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -63,7 +63,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1 className="text-center">Samachaar App : Top Headlines</h1>
+        <h1 className="text-center" style={{margin: '35px 0px'}}>Samachaar App : Top Headlines</h1>
         {this.state.loading && <Loader/>}
         <div className="row">
           {!this.state.loading && this.state.articles.map((elem) => {
@@ -76,6 +76,9 @@ export class News extends Component {
                   }
                   imgUrl={elem.urlToImage}
                   newsUrl={elem.url}
+                  publishedAt={elem.publishedAt}
+                  author={elem.author}
+                  source={elem.source.name}
                 />
               </div>
             );
